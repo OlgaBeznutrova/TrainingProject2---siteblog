@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="single-blog-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="border-top">
+                    <div class="col-md-8">
+                        <div class="blog-area">
+                            <div class="blog-area-part">
+                                <h2>{{ post.title|title }}</h2>
+                                <div class="for-style">
+                                    <div class="category-tags-view">
+                                        Category: <a href="{{ post.category.get_absolute_url }}">
+                                        {{ post.category }}</a>
+                                        <br>
+                                        {% if post.tags.exists %}
+                                            Tags:
+                                            {% for tag in post.tags.all %}
+                                                <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+                                            {% endfor %}
+                                        {% endif %}
+                                        <br>
+                                        Views: {{ post.views }}
+                                    </div>
+                                    <h3><i class="fa fa-quote-left" aria-hidden="true"></i>{{ post.quote }}<i
+                                            class="fa fa-quote-right" aria-hidden="true"></i></h3>
+                                    {{ post.content|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% include "included/_sidebar.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

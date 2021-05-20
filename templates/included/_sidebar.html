@@ -1,0 +1,16 @@
+{% load blog_tags %}
+
+<div class="col-md-4">
+    <div class="search-posts">
+        <h2 class="sidebar-title">Search for posts</h2>
+        <form action="{% url 'search' %}" method="get">
+            <input type="text" name="search" placeholder="Search...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    {% get_popular_posts 5 %}
+
+    {% get_tags %}
+
+</div>
